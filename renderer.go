@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/nuclio/errors"
 	"github.com/ghodss/yaml"
+	"github.com/nuclio/errors"
 	"github.com/olekukonko/tablewriter"
 )
 
@@ -65,8 +65,7 @@ func (r *Renderer) RenderJSON(items interface{}) error {
 	}
 
 	var pbody bytes.Buffer
-	err = json.Indent(&pbody, body, "", "\t")
-	if err != nil {
+	if err := json.Indent(&pbody, body, "", "\t"); err != nil {
 		return errors.Wrap(err, "Failed to indent JSON")
 	}
 
